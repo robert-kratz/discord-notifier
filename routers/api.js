@@ -1,8 +1,14 @@
+"use strict";
+
 const express = require('express');
 const router = express.Router();
 
 var {settings, Discord} = require("../bot");
+const { createProject } = require('../schemetics/projects');
 const client = new Discord.Client();
+
+const Project = require('../schemetics/projects');
+
 
 router.use('/', (req, res, next) => {
     next();
@@ -38,6 +44,20 @@ router.get('/stop', (req, res) => {
     }  else {
         res.status(400).json({state: 400, message: 'Bot is not running.', bot: settings.state});
     }
+});
+
+
+router.get('/projects', (req, res) => {
+    res.status(200).json(Project.getProject());
+});
+
+router.post('/projects/add', (req, res) => {
+    createProject(new Project.Project('test1', 'this is a description', '127.0.0.1', 'https://localhost:8080/webhook'));
+    res.status(200).json(Project.getProject());
+});
+
+router.post('/projects/delete', (req, res) => {
+    res.status(200).json(Project.getProject());
 });
 
 module.exports = router;
