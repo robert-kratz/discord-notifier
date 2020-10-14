@@ -1,7 +1,9 @@
+"use strict";
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var settings = {state: 'offline'};
+var settings = {state: 'offline', channel_category_id: '765926777113280562', setup_server_id: '524257276425535498'};
 
 client.on('ready', (event) => {
     console.log('Logged in as ' + client.user.tag);
