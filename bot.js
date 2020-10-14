@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+var settings = {state: 'offline'};
+
 client.on('ready', (event) => {
     console.log('Logged in as ' + client.user.tag);
     client.user.setActivity('Just chilli´n');
@@ -21,5 +23,6 @@ client.on('message', (event) => {
 });
 
 module.exports = {
-    Discord
+    Discord,
+    settings
 }
