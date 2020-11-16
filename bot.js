@@ -16,6 +16,8 @@ client.on("disconnect", (e) => {
 client.on('message', (e) => {
     if(e.content === '-version') {
         e.reply('Project version ' + config.version + ' running on ' + process.platform);
+    } else if(e.content === '-stop' && e.author.id === '247755197051437057') {
+        client.destroy;
     }
 });
 
@@ -32,7 +34,7 @@ const start = (token) => {
     }).catch(console.error);
 }
 
-const stop = (token) => {
+const stop = () => {
     client.destroy();
 }
 

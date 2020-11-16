@@ -10,7 +10,9 @@ app.use(express.json());
 const {Discord, start} = require('./bot');
 const client = new Discord.Client();
 
-app.listen(8080, () => {
+/*app.listen(8080, () => {
     console.log('Webserver is running.');
     start(process.env.token);
-});
+});*/
+
+start(process.env.token);
