@@ -1,30 +1,43 @@
 "use strict";
 
 const Discord = require('discord.js');
+const config = require('./config.json');
+
 const client = new Discord.Client();
 
-var settings = {state: 'offline', channel_category_id: '765926777113280562', setup_server_id: '524257276425535498'};
-
-client.on('ready', (event) => {
+client.on('ready', (e) => {
     console.log('Logged in as ' + client.user.tag);
-    client.user.setActivity('Just chilli´n');
-    client.user.setStatus('idle');
 });
 
-client.on("disconnect", (event) => {
-    client.user.setStatus('offline');
+client.on("disconnect", (e) => {
     console.log('Bot Disconnected.');
 });
 
-client.on('message', (event) => {
-    if(event.content === '!stop') {
-        event.reply('restarting...');
-    } else if(event.content === '!restart') {
-        client.destroy
+client.on('message', (e) => {
+    if(e.content === '-version') {
+        e.reply('Project version ' + config.version + ' running on ' + process.platform);
     }
 });
 
+const start = (token) => {
+    client.login(token).then(() => {
+        client.user.setPresence({ 
+            activity: { 
+                name: 'notifier.exe',
+                type: 'LISTENING',
+                url: 'https://notifier.rjkstudios.com/me'
+            }, 
+            status: 'idle'
+        }).catch(console.error);
+    }).catch(console.error);
+}
+
+const stop = (token) => {
+    client.destroy();
+}
+
 module.exports = {
     Discord,
-    settings
+    start,
+    stop
 }

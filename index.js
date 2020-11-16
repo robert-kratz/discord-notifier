@@ -7,13 +7,10 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-const {Discord} = require('./bot');
+const {Discord, start} = require('./bot');
 const client = new Discord.Client();
-
-const api = require('./routers/api');
-
-app.use('/api/', api);
 
 app.listen(8080, () => {
     console.log('Webserver is running.');
+    start(process.env.token);
 });
