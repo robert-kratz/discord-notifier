@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon index.js"
   },
   "author": "RobertKratz",
   "license": "ISC",
@@ -14,6 +14,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "nodemon": "^2.0.5"
+    "nodemon": "^2.0.7"
   }
 }
